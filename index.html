@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda</title>
+    <title>Agenda</title> 
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input id="tarefa" type="text" placeholder="Insira aqui sua tarefa"></input>
-    </input id="seleciona-data" type="date" />
+    <input id="tarefa" type="text" placeholder="Insira aqui sua tarefa">
+    <input id="campoData" type="date">
     <button onclick="adicionarTarefa()">Adicionar Tarefa</button>
+    <div class="quadrado"></div>
     <div id="Lista-de-tarefas"></div>
+
     <script>
-        let cocadaBoa;
+        
         let afazeres;
         if (Array.isArray(JSON.parse(localStorage.getItem("afazeres")))) {
             afazeres = JSON.parse(localStorage.getItem("afazeres"));
@@ -30,7 +33,7 @@
                 },
                 {
                     nome: "extender roupa",
-                    data: "25-08-2-25",
+                    data: "25-08-25",
                     id: "id3"
                 },
                 {
@@ -41,12 +44,13 @@
             ];
         };
         localStorage.setItem("afazeres", JSON.stringify(afazeres));
-        let salvarTarefas = () =>  {
+        let salvarTarefas = () => localStorage.setItem("afazeres", JSON.stringify
+        (afazeres)); {
         };
         let adicionarTarefa = () => {
             const campoTarefa = document.getElementById("tarefa");
             const tarefa = campoTarefa.value;
-            const campoData = document.getElementById("seleciona-data");
+            const campoData = document.getElementById("campoData");
             const prazo = campoData.value;
             const cron = "" + new Date().getTime();
             afazeres.push(
@@ -56,7 +60,10 @@
                     id: cron
                 }
             )
-            salvarTarefas();
+            salvarTarefas();{
+            localStorage.setItem("afazeres", JSON.stringify(afazeres));
+            };
+
             renderizar();
         };
         let apagarTarefa = (evento) => {
@@ -64,9 +71,9 @@
             const idASerApagado = botaoApagar.id;
             afazeres = afazeres.filter((tarefa) => {
                 if (tarefa.id === idASerApagado) {
-                    return false;
+                return false;
                 } else {
-                    return true;
+                return true;
                 }
             });
             salvarTarefas();
